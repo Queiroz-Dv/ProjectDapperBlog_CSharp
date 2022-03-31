@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjectDapperBlog;
+using System;
 
 namespace ProjectDapperBlog_CSharp.Views.TagView
 {
@@ -10,6 +11,7 @@ namespace ProjectDapperBlog_CSharp.Views.TagView
             const short TAG_CREATE = 2;
             const short TAG_UPDATE = 3;
             const short TAG_DELETE = 4;
+            const short SAIR = 0;
             Console.Clear();
             Console.WriteLine("Gestor de Tags");
             Console.WriteLine("---------------");
@@ -17,6 +19,9 @@ namespace ProjectDapperBlog_CSharp.Views.TagView
             Console.WriteLine();
             Console.WriteLine("1 - Listar Tags");
             Console.WriteLine("2 - Cadastrar tags");
+            Console.WriteLine("3 - Atualizar tags");
+            Console.WriteLine("4 - Deletar tags");
+            Console.WriteLine("0 - Voltar");
             Console.WriteLine("---------------");
             Console.WriteLine();
             Console.WriteLine();
@@ -35,6 +40,9 @@ namespace ProjectDapperBlog_CSharp.Views.TagView
                     break;
                 case TAG_DELETE:
                     DeleteTagView.Load();
+                    break;
+                case SAIR:
+                    Program.Load();
                     break;
                 default:
                     break;

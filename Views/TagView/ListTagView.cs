@@ -13,6 +13,7 @@ namespace ProjectDapperBlog_CSharp.Views.TagView
             Console.WriteLine("-------------");
             List();
             Console.ReadKey();
+            MenuTagView.Load();
         }
 
         private static void List()

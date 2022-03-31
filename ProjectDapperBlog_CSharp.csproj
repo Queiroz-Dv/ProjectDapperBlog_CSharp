@@ -5,6 +5,7 @@
     <TargetFramework>net48</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <StartupObject>ProjectDapperBlog.Program</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
