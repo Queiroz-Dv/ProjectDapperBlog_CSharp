@@ -21,7 +21,7 @@ namespace ProjectDapperBlog
             Database.Connection.Close();
         }
 
-        private static void Load()
+        public static void Load()
         {
 
             const short GESTOR_USUARIO = 1;
@@ -31,6 +31,7 @@ namespace ProjectDapperBlog
             const short VINCULAR_PERFIL = 5;
             const short VINCULAR_POST = 6;
             const short RELATORIOS = 7;
+            const short SAIR = 0;
 
             Console.Clear();
             Console.WriteLine("Dapper Blog");
@@ -44,6 +45,7 @@ namespace ProjectDapperBlog
             Console.WriteLine("5 - Vincular Perfil/Usuário");
             Console.WriteLine("6 - Vincular Post/Tag");
             Console.WriteLine("7 - Relatórios");
+            Console.WriteLine("0 - Sair");
             Console.WriteLine("---------------");
             Console.WriteLine();
             Console.WriteLine();
@@ -53,6 +55,9 @@ namespace ProjectDapperBlog
             {
                 case GESTOR_TAG:
                     MenuTagView.Load();
+                    break;
+                case SAIR:
+                    Environment.Exit(1);
                     break;
                 default:
                     break;
