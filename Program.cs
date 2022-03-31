@@ -1,7 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
-using ProjectDapperBlog.Models;
-using ProjectDapperBlog_CSharp.Models;
-using ProjectDapperBlog_CSharp.Repositories;
+using ProjectDapperBlog_CSharp;
+using ProjectDapperBlog_CSharp.Views.TagView;
 using System;
 
 namespace ProjectDapperBlog
@@ -12,62 +11,54 @@ namespace ProjectDapperBlog
 
         static void Main(string[] args)
         {
-            var connection = new SqlConnection(CONNECTION_STRING);
-            connection.Open();
-            ReadUsersWithRoles(connection);
-            // ReadRoles(connection);
-            // ReadTags(connection);
-            connection.Close();
+            Database.Connection = new SqlConnection(CONNECTION_STRING);
+
+            Database.Connection.Open();
+
+            Load();
+            Console.ReadKey();
+
+            Database.Connection.Close();
         }
 
-        public static void ReadUsersWithRoles(SqlConnection connection)
+        private static void Load()
         {
-            var repo = new URepository(connection);
-            var items = repo.GetWithRoles();
 
-            foreach (var item in items)
+            const short GESTOR_USUARIO = 1;
+            const short GESTOR_PERFIL = 2;
+            const short GESTOR_CATEGORIA = 3;
+            const short GESTOR_TAG = 4;
+            const short VINCULAR_PERFIL = 5;
+            const short VINCULAR_POST = 6;
+            const short RELATORIOS = 7;
+
+            Console.Clear();
+            Console.WriteLine("Dapper Blog");
+            Console.WriteLine("---------------");
+            Console.WriteLine("Escolha uma opção");
+            Console.WriteLine();
+            Console.WriteLine("1 - Gestor de Usuários");
+            Console.WriteLine("2 - Gestor de Perfil");
+            Console.WriteLine("3 - Gestor de Categoria");
+            Console.WriteLine("4 - Gestor de Tag");
+            Console.WriteLine("5 - Vincular Perfil/Usuário");
+            Console.WriteLine("6 - Vincular Post/Tag");
+            Console.WriteLine("7 - Relatórios");
+            Console.WriteLine("---------------");
+            Console.WriteLine();
+            Console.WriteLine();
+            var option = short.Parse(Console.ReadLine());
+
+            switch (option)
             {
-                Console.WriteLine(item.Name);
-                foreach (var role in item.Roles)
-                {
-                    Console.WriteLine($" - {role.Name}");
-                }
+                case GESTOR_TAG:
+                    MenuTagView.Load();
+                    break;
+                default:
+                    break;
             }
         }
 
-        public static void CreateUsers(SqlConnection connection)
-        {
-            var user = new User()
-            {
-                Bio = "Equipe Queiroz",
-                Email = "eduardo@queiroz.io",
-                Image = "https://...",
-                Name = "Equipe Queiroz",
-                PasswordHash = "Hashing",
-                Slug = "equipe-queiroz-asp"
-            };
-            var repo = new Repository<User>(connection);
-            repo.Create(user);
-
-        }
-
-        public static void ReadRoles(SqlConnection connection)
-        {
-            var repo = new Repository<Role>(connection);
-            var items = repo.Get();
-
-            foreach (var item in items)
-                Console.WriteLine(item.Name);
-        }
-
-        public static void ReadTags(SqlConnection connection)
-        {
-            var repo = new Repository<Tag>(connection);
-            var items = repo.Get();
-
-            foreach (var item in items)
-                Console.WriteLine(item.Name);
-        }
     }
 }
 
