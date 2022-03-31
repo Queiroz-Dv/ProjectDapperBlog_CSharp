@@ -1,10 +1,15 @@
 ﻿using Dapper.Contrib.Extensions;
+using ProjectDapperBlog_CSharp.Models;
+using System.Collections.Generic;
 
 namespace ProjectDapperBlog.Models
 {
     [Table("[User]")]
     public class User
     {
+        public User()
+            => Roles = new List<Role>();
+
         public int Id { get; set; }
 
         public string Name { get; set; }
@@ -18,5 +23,8 @@ namespace ProjectDapperBlog.Models
         public string Image { get; set; }
 
         public string Slug { get; set; }
+
+        [Write(false)]
+        public List<Role> Roles { get; set; }
     }
 }

@@ -5,6 +5,8 @@ using Microsoft.Data.SqlClient;
 
 namespace ProjectDapperBlog_CSharp.Repositories
 {
+    // Exemplo de repositório único
+    // Este exemplo não deve ser seguido
     public class RoleRepository
     {
         private readonly SqlConnection _connection;

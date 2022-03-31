@@ -15,8 +15,8 @@ namespace ProjectDapperBlog
             var connection = new SqlConnection(CONNECTION_STRING);
             connection.Open();
             ReadUsers(connection);
-            ReadRoles(connection);
-            ReadTags(connection);
+            // ReadRoles(connection);
+            // ReadTags(connection);
             connection.Close();
         }
 
@@ -26,7 +26,29 @@ namespace ProjectDapperBlog
             var items = repo.Get();
 
             foreach (var item in items)
+            {
                 Console.WriteLine(item.Name);
+                foreach (var role in item.Roles)
+                {
+                    Console.WriteLine($" - {role.Name}");
+                }
+            }
+        }
+
+        public static void CreateUsers(SqlConnection connection)
+        {
+            var user = new User()
+            {
+                Bio = "Equipe Queiroz",
+                Email = "eduardo@queiroz.io",
+                Image = "https://...",
+                Name = "Equipe Queiroz",
+                PasswordHash = "Hashing",
+                Slug = "equipe-queiroz-asp"
+            };
+            var repo = new Repository<User>(connection);
+            repo.Create(user);
+
         }
 
         public static void ReadRoles(SqlConnection connection)
