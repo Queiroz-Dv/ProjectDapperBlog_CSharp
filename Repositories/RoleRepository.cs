@@ -10,31 +10,23 @@ namespace ProjectDapperBlog_CSharp.Repositories
         private readonly SqlConnection _connection;
 
         public RoleRepository(SqlConnection connection)
-        {
-            _connection = connection;
-        }
+            => _connection = connection;
 
         public IEnumerable<Role> GetAll()
-        {
-            return _connection.GetAll<Role>();
-        }
+            => _connection.GetAll<Role>();
 
         public Role Get(int id)
-        {
-            return _connection.Get<Role>(id);
-        }
+            => _connection.Get<Role>(id);
 
         public void Create(Role role)
-        {
-            _connection.Insert(role);
-        }
+            => _connection.Insert(role);
 
 
         public void Update(Role role)
         {
             if (role.Id != 0)
             {
-                _connection.Update<Role>(role);
+                _connection.Update(role);
             }
         }
 
@@ -42,7 +34,7 @@ namespace ProjectDapperBlog_CSharp.Repositories
         {
             if (role.Id != 0)
             {
-                _connection.Delete<Role>(role);
+                _connection.Delete(role);
             }
         }
 
@@ -55,7 +47,7 @@ namespace ProjectDapperBlog_CSharp.Repositories
             else
             {
                 var role = _connection.Get<Role>(id);
-                _connection.Delete<Role>(role);
+                _connection.Delete(role);
             }
         }
     }

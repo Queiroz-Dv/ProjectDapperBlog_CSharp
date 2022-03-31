@@ -5,24 +5,17 @@ using Microsoft.Data.SqlClient;
 
 namespace ProjectDapperBlog_CSharp.Repositories
 {
+    // Exemplo de repositório único
+    // Este exemplo não deve ser seguido
     public class UserRepository
     {
         private readonly SqlConnection _connection;
 
-        public UserRepository(SqlConnection connection)
-        {
-            _connection = connection;
-        }
+        public UserRepository(SqlConnection connection) => _connection = connection;
 
-        public IEnumerable<User> GetAll()
-        {
-            return _connection.GetAll<User>();
-        }
+        public IEnumerable<User> GetAll() => _connection.GetAll<User>();
 
-        public User Get(int id)
-        {
-            return _connection.Get<User>(id);
-        }
+        public User Get(int id) => _connection.Get<User>(id);
 
         public void Create(User user)
         {
@@ -34,7 +27,7 @@ namespace ProjectDapperBlog_CSharp.Repositories
         {
             if (user.Id != 0)
             {
-                _connection.Update<User>(user);
+                _connection.Update(user);
             }
         }
 
@@ -42,7 +35,7 @@ namespace ProjectDapperBlog_CSharp.Repositories
         {
             if (user.Id != 0)
             {
-                _connection.Delete<User>(user);
+                _connection.Delete(user);
             }
         }
 
@@ -55,7 +48,7 @@ namespace ProjectDapperBlog_CSharp.Repositories
             else
             {
                 var user = _connection.Get<User>(id);
-                _connection.Delete<User>(user);
+                _connection.Delete(user);
             }
         }
     }
