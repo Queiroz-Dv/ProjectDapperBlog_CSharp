@@ -14,16 +14,16 @@ namespace ProjectDapperBlog
         {
             var connection = new SqlConnection(CONNECTION_STRING);
             connection.Open();
-            ReadUsers(connection);
+            ReadUsersWithRoles(connection);
             // ReadRoles(connection);
             // ReadTags(connection);
             connection.Close();
         }
 
-        public static void ReadUsers(SqlConnection connection)
+        public static void ReadUsersWithRoles(SqlConnection connection)
         {
-            var repo = new Repository<User>(connection);
-            var items = repo.Get();
+            var repo = new URepository(connection);
+            var items = repo.GetWithRoles();
 
             foreach (var item in items)
             {
