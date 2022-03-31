@@ -1,8 +1,8 @@
 ﻿using Dapper.Contrib.Extensions;
-using Microsoft.Data.SqlClient;
 using ProjectDapperBlog.Models;
 using ProjectDapperBlog_CSharp.Repositories;
 using System;
+using Microsoft.Data.SqlClient;
 
 namespace ProjectDapperBlog
 {
@@ -14,66 +14,29 @@ namespace ProjectDapperBlog
         {
             var connection = new SqlConnection(CONNECTION_STRING);
             connection.Open();
-            // ReadUsers(connection);
-            // ReadUser(connection);
-            // CreateUser(connection);
-            // UpdateUser(connection);
-            // DeleteUser(connection);
+            ReadUsers(connection);
+            ReadRoles(connection);
             connection.Close();
         }
 
-        public static void ReadUser(SqlConnection connection)
+        public static void ReadUsers(SqlConnection connection)
         {
             var repo = new UserRepository(connection);
             var users = repo.GetAll();
 
             foreach (var user in users)
                 Console.WriteLine(user.Name);
-
         }
 
-        public static void CreateUser(SqlConnection connection)
+        public static void ReadRoles(SqlConnection connection)
         {
-            var user = new User()
-            {
-                Bio = "Equipe Dapper",
-                Email = "dapper@sharp.io",
-                Image = "https://...",
-                Name = "Equipe Dapper Sharp",
-                PasswordHash = "Hashing",
-                Slug = "equipe-dapper-sharp"
-            };
+            var repo = new RoleRepository(connection);
+            var roles = repo.GetAll();
 
-            connection.Insert<User>(user);
-            Console.WriteLine("Cadastro realizado");
-            Console.ReadKey();
+            foreach (var role in roles)
+                Console.WriteLine(role.Name);
         }
 
-        public static void UpdateUser(SqlConnection connection)
-        {
-            var user = new User()
-            {
-                Id = 2,
-                Bio = "Equipe | Dapper",
-                Email = "dapper@sharp.com",
-                Image = "http://...",
-                Name = "Equipe Sharp",
-                PasswordHash = "Hashing",
-                Slug = "equipe-sharp"
-            };
-
-            connection.Update<User>(user);
-            Console.WriteLine("Atulização bem sucedida");
-            Console.ReadKey();
-        }
-
-        public static void DeleteUser(SqlConnection connection)
-        {
-            var user = connection.Get<User>(2);
-            connection.Delete<User>(user);
-            Console.WriteLine("Remoção bem sucedida");
-            Console.ReadKey();
-        }
     }
 }
 
