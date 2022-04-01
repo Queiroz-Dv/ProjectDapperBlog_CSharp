@@ -1,6 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using ProjectDapperBlog.Views.UserView;
 using ProjectDapperBlog_CSharp;
+using ProjectDapperBlog_CSharp.Views.ProfileView;
 using ProjectDapperBlog_CSharp.Views.TagView;
 using System;
 
@@ -57,6 +58,9 @@ namespace ProjectDapperBlog
             {
                 case GESTOR_USUARIO:
                     MenuUsuarioView.Load();
+                    break;
+                case GESTOR_PERFIL:
+                    MenuProfileView.Load();
                     break;
                 case GESTOR_TAG:
                     MenuTagView.Load();
