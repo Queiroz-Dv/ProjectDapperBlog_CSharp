@@ -16,6 +16,7 @@ namespace ProjectDapperBlog
             Database.Connection.Open();
 
             Load();
+
             Console.ReadKey();
 
             Database.Connection.Close();
@@ -53,6 +54,9 @@ namespace ProjectDapperBlog
 
             switch (option)
             {
+                case GESTOR_USUARIO:
+                    MenuUsuarioView.Load();
+                    break;
                 case GESTOR_TAG:
                     MenuTagView.Load();
                     break;
