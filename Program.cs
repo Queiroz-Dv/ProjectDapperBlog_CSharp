@@ -36,7 +36,7 @@ namespace ProjectDapperBlog
             const short SAIR = 0;
 
             Console.Clear();
-            Console.WriteLine("Dapper Blog");
+            Console.WriteLine("Dapper Manager Blog");
             Console.WriteLine("---------------");
             Console.WriteLine("Escolha uma opção");
             Console.WriteLine();
