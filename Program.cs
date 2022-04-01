@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
+using ProjectDapperBlog.Views.UserView;
 using ProjectDapperBlog_CSharp;
 using ProjectDapperBlog_CSharp.Views.TagView;
 using System;
@@ -16,6 +17,7 @@ namespace ProjectDapperBlog
             Database.Connection.Open();
 
             Load();
+
             Console.ReadKey();
 
             Database.Connection.Close();
@@ -34,7 +36,7 @@ namespace ProjectDapperBlog
             const short SAIR = 0;
 
             Console.Clear();
-            Console.WriteLine("Dapper Blog");
+            Console.WriteLine("Dapper Manager Blog");
             Console.WriteLine("---------------");
             Console.WriteLine("Escolha uma opção");
             Console.WriteLine();
@@ -53,6 +55,9 @@ namespace ProjectDapperBlog
 
             switch (option)
             {
+                case GESTOR_USUARIO:
+                    MenuUsuarioView.Load();
+                    break;
                 case GESTOR_TAG:
                     MenuTagView.Load();
                     break;
