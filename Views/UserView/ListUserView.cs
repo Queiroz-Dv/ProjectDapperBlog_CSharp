@@ -18,17 +18,23 @@ namespace ProjectDapperBlog.Views.UserView
 
         private static void ListUser()
         {
-            var repo = new Repository<User>(Database.Connection);
-            var users = repo.Get();
+            var repo = new URepository(Database.Connection);
+            var users = repo.GetWithRoles();
             foreach (var item in users)
             {
                 Console.WriteLine("-------------");
-                Console.WriteLine($"{item.Id}");
-                Console.WriteLine($"{item.Name}");
-                Console.WriteLine($"{item.Email}");
-                Console.WriteLine($"{item.Bio}");
-                Console.WriteLine($"{item.Image}");
-                Console.WriteLine($"{item.Slug}");
+                Console.WriteLine($"Detalhes do usuário {item.Name}");
+                Console.WriteLine($"Id: {item.Id}");
+                Console.WriteLine($"Nome: {item.Name}");
+                Console.WriteLine($"E-mail: {item.Email}");
+                Console.WriteLine($"Bio: {item.Bio}");
+                Console.WriteLine($"Imagem: {item.Image}");
+                Console.WriteLine($"Slug: {item.Slug}");
+                foreach (var role in item.Roles)
+                {
+                    Console.WriteLine($"{role.Name}");
+                    Console.WriteLine($"{role.Slug}");
+                }
                 Console.WriteLine("-------------");
             }
 

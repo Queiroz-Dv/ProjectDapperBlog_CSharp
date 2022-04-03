@@ -24,7 +24,7 @@ namespace ProjectDapperBlog.Models
 
         public string Slug { get; set; }
 
-        [Write(false)]
+        [Write(false)] // Para não incluir os perfis na hora de salvar
         public List<Role> Roles { get; set; }
     }
 }

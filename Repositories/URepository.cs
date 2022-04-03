@@ -38,15 +38,15 @@ namespace ProjectDapperBlog_CSharp.Repositories
                         {
                             usr.Roles.Add(role);
                         }
-                        usr.Roles.Add(role);
                         users.Add(usr);
                     }
                     else
                     {
+                        // Se o usuário já existe adiciona só o role
                         usr.Roles.Add(role);
                     }
                     return user;
-                }, splitOn: "[Id]");
+                }, splitOn: "Id");
             return users;
         }
     }
