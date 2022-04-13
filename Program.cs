@@ -61,7 +61,7 @@ namespace ProjectDapperBlog
             switch (option)
             {
                 case GESTOR_USUARIO:
-                    MenuUsuarioView.Load();
+                    MenuUserView.Load();
                     break;
                 case GESTOR_PERFIL:
                     MenuProfileView.Load();

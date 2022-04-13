@@ -34,7 +34,7 @@ namespace ProjectDapperBlog_CSharp.Models
         public DateTime CreateDate { get; set; }
 
         public DateTime LastUpdateDate { get; set; }
-
+        [Write(False)]
         public List<Tag> Tags { get; set; }
     }
 }

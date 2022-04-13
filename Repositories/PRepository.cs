@@ -5,20 +5,20 @@ using ProjectDapperBlog_CSharp.Models;
 
 namespace ProjectDapperBlog_CSharp.Repositories
 {
-    public class URepository : Repository<User>
+    public class PRepository : Repository<Post>
     {
         private readonly SqlConnection _connection;
 
-        public URepository(SqlConnection connection)
+        public PRepository(SqlConnection connection)
             : base(connection)
             => _connection = connection;
 
-        public List<User> GetWithRoles()
+        public List<Post> GetWith()
         {
             var query = @"
                 SELECT
-	                [User].*,
-	                [Role].*
+	                [Post].*,
+	                [Tag].*
                 FROM
 	                [User]
 	                LEFT JOIN [UserRole] ON [UserRole].[UserId] = [User].[Id]
@@ -40,7 +40,7 @@ namespace ProjectDapperBlog_CSharp.Repositories
                     }
                     else
                     {
-                        // Se o usuário já existe adiciona só o role
+                        // Se o usuário já existe adiciona só adiciona o perfil
                         usr.Roles.Add(role);
                     }
                     return user;
