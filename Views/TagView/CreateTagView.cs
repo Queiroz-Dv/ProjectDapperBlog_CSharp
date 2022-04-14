@@ -17,9 +17,7 @@ namespace ProjectDapperBlog_CSharp.Views.TagView
 
             Console.Write("Slug: ");
             var slug = Console.ReadLine();
-
-            // Quando chamar o Create faz a instância
-            //  adicinando os valores diretamente
+            
             Create(new Tag
             {
                 Name = name,
@@ -34,7 +32,6 @@ namespace ProjectDapperBlog_CSharp.Views.TagView
         {
             try
             {
-                // Instância do repositório
                 var repo = new Repository<Tag>(Database.Connection);
                 repo.Create(tag);
                 Console.WriteLine($"- {tag.Name} - cadastrada com sucesso!");

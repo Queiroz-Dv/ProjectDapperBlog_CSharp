@@ -20,8 +20,8 @@ namespace ProjectDapperBlog_CSharp.Views.ProfileView
             Console.WriteLine("Escolha uma opção");
             Console.WriteLine();
             Console.WriteLine("1 - Listar Perfis");
-            Console.WriteLine("2 - Procurar Perfis");
-            Console.WriteLine("3 - Cadastrar Perfis");
+            Console.WriteLine("2 - Procurar Perfil");
+            Console.WriteLine("3 - Cadastrar Perfil");
             Console.WriteLine("4 - Atualizar Perfil");
             Console.WriteLine("5 - Deletar Perfil");
             Console.WriteLine("0 - Voltar");
