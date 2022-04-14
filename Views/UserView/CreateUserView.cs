@@ -33,7 +33,7 @@ namespace ProjectDapperBlog.Views.UserView
 
             Console.WriteLine("Aperte qualquer tecla para prosseguir com o cadastro");
             Console.ReadKey();
-
+            
             Create(new User
             {
                 Name = name,
