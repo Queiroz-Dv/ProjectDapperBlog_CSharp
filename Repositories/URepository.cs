@@ -2,6 +2,8 @@
 using Microsoft.Data.SqlClient;
 using ProjectDapperBlog.Models;
 using ProjectDapperBlog_CSharp.Models;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ProjectDapperBlog_CSharp.Repositories
 {
@@ -29,7 +31,7 @@ namespace ProjectDapperBlog_CSharp.Repositories
                 (user, role) =>
                 {
                     var usr = users.FirstOrDefault(x => x.Id == user.Id);
-                    if (usr == null) // Se não existe na lista 
+                    if (usr == null)
                     {
                         usr = user;
                         if (role != null)
@@ -40,7 +42,6 @@ namespace ProjectDapperBlog_CSharp.Repositories
                     }
                     else
                     {
-                        // Se o usuário já existe adiciona só o role
                         usr.Roles.Add(role);
                     }
                     return user;

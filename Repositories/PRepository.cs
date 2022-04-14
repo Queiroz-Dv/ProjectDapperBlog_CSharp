@@ -1,7 +1,8 @@
 ﻿using Dapper;
 using Microsoft.Data.SqlClient;
-using ProjectDapperBlog.Models;
 using ProjectDapperBlog_CSharp.Models;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ProjectDapperBlog_CSharp.Repositories
 {
@@ -13,39 +14,50 @@ namespace ProjectDapperBlog_CSharp.Repositories
             : base(connection)
             => _connection = connection;
 
-        public List<Post> GetWith()
+        public List<Post> GetWithTags()
         {
             var query = @"
-                SELECT
-	                [Post].*,
-	                [Tag].*
-                FROM
-	                [User]
-	                LEFT JOIN [UserRole] ON [UserRole].[UserId] = [User].[Id]
-	                LEFT JOIN [Role] ON [UserRole].[RoleId] = [Role].[Id]";
+                        SELECT
+                            [Post].[Id],
+                            [Post].[Title],
+                            [Post].[Summary],
+                            [Post].[Slug],
+                            [Tag].[Id],
+                            [Tag].[Name]
+                        FROM
+                            [Post]
+                            LEFT JOIN [PostTag] ON [Post].[Id] = [PostTag].[PostId]
+                            LEFT JOIN [Tag] ON [PostTag].[TagId] = [Tag].[Id]
+                        GROUP BY 
+                            [Post].[Id],
+                            [Post].[Title],
+                            [Post].[Summary],
+                            [Post].[Slug],
+                            [Tag].[Id],
+                            [Tag].[Name],
+                            [Tag].[Slug]";  
 
-            var users = new List<User>();
-            var items = _connection.Query<User, Role, User>(query,
-                (user, role) =>
+            var posts = new List<Post>();
+            var items = _connection.Query<Post, Tag, Post>(query,
+                (post, tag) =>
                 {
-                    var usr = users.FirstOrDefault(x => x.Id == user.Id);
-                    if (usr == null) // Se não existe na lista 
+                    var pst = posts.FirstOrDefault(x => x.Id == post.Id);
+                    if (pst == null)
                     {
-                        usr = user;
-                        if (role != null)
+                        pst = post;
+                        if (tag != null)
                         {
-                            usr.Roles.Add(role);
+                            pst.Tags.Add(tag);
                         }
-                        users.Add(usr);
+                        posts.Add(pst);
                     }
                     else
-                    {
-                        // Se o usuário já existe adiciona só adiciona o perfil
-                        usr.Roles.Add(role);
+                    {                        
+                        pst.Tags.Add(tag);
                     }
-                    return user;
+                    return post;
                 }, splitOn: "Id");
-            return users;
+            return posts;
         }
     }
 }

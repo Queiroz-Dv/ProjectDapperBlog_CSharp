@@ -13,7 +13,7 @@ namespace ProjectDapperBlog.Views.UserView
             Console.WriteLine("Lista de Usuários");
             Console.WriteLine("-------------");
             ListUser();
-            MenuUsuarioView.Load();
+            MenuUserView.Load();
         }
 
         private static void ListUser()

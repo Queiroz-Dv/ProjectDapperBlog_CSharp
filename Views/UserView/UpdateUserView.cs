@@ -47,7 +47,7 @@ namespace ProjectDapperBlog.Views.UserView
                 Slug = slug
             });
             Console.ReadKey();
-            MenuUsuarioView.Load();
+            MenuUserView.Load();
         }
 
         private static void Update(User user)

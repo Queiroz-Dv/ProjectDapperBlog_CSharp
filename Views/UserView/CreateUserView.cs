@@ -46,7 +46,7 @@ namespace ProjectDapperBlog.Views.UserView
             });
 
             Console.ReadKey();
-            MenuUsuarioView.Load();
+            MenuUserView.Load();
         }
 
         private static void Create(User user)

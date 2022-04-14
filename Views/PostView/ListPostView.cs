@@ -26,7 +26,6 @@ namespace ProjectDapperBlog_CSharp.Views.PostView
                 Console.WriteLine($"{item.Name}");
                 Console.WriteLine($"{item.Title}");
                 Console.WriteLine($"{item.Summary}");
-                Console.WriteLine($"{item.Body}");
                 Console.WriteLine($"{item.Slug}");
                 Console.WriteLine($"{item.CreateDate}");
                 Console.WriteLine($"{item.LastUpdateDate}");
