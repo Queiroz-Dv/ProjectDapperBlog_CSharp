@@ -21,16 +21,16 @@ namespace ProjectDapperBlog_CSharp.Views.PostView
             var posts = repo.Get();
             foreach (var item in posts)
             {
-                //Console.WriteLine("-------------");
-                //Console.WriteLine($"{item.Id}");
-                //Console.WriteLine($"{item.Name}");
-                //Console.WriteLine($"{item.Email}");
-                //Console.WriteLine($"{item.Bio}");
-                //Console.WriteLine($"{item.Image}");
-                //Console.WriteLine($"{item.Slug}");
-                //Console.WriteLine("-------------");
+                Console.WriteLine("-------------");
+                Console.WriteLine($"{item.Id}");
+                Console.WriteLine($"{item.Name}");
+                Console.WriteLine($"{item.Title}");
+                Console.WriteLine($"{item.Summary}");
+                Console.WriteLine($"{item.Slug}");
+                Console.WriteLine($"{item.CreateDate}");
+                Console.WriteLine($"{item.LastUpdateDate}");
+                Console.WriteLine("-------------");
             }
-
             Console.ReadKey();
         }
     }

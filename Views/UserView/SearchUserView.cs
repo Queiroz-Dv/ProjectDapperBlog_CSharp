@@ -1,7 +1,6 @@
 ﻿using ProjectDapperBlog.Models;
 using ProjectDapperBlog_CSharp;
 using ProjectDapperBlog_CSharp.Repositories;
-using ProjectDapperBlog_CSharp.Views.TagView;
 using System;
 
 namespace ProjectDapperBlog.Views.UserView
@@ -27,7 +26,7 @@ namespace ProjectDapperBlog.Views.UserView
                 Console.WriteLine(ex.Message);
                 Console.ReadKey();
             }
-            MenuTagView.Load();
+            MenuUserView.Load();
         }
 
         private static void SearchUser(int id)

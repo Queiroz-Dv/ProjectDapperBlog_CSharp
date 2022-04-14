@@ -2,7 +2,7 @@
 
 namespace ProjectDapperBlog.Views.UserView
 {
-    public class MenuUsuarioView
+    public class MenuUserView
     {
         public static void Load()
         {

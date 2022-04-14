@@ -19,7 +19,7 @@ namespace ProjectDapperBlog.Views.UserView
 
             Delete(int.Parse(id));
             Console.ReadKey();
-            MenuUsuarioView.Load();
+            MenuUserView.Load();
         }
 
         private static void Delete(int id)

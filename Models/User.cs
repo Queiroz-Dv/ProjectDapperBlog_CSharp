@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace ProjectDapperBlog.Models
 {
-    [Table("[User]")]
+    [Table("[User]")] //Para não pluralizar a tabela
     public class User
     {
         public User()
