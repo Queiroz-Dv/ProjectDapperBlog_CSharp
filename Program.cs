@@ -28,7 +28,7 @@ namespace ProjectDapperBlog
 
         public static void Load()
         {
-
+            Console.Title = "Menu Principal";
             const short GESTOR_USUARIO = 1;
             const short GESTOR_PERFIL = 2;
             const short GESTOR_CATEGORIA = 3;
