@@ -1,5 +1,4 @@
-﻿using ProjectDapperBlog.Models;
-using ProjectDapperBlog_CSharp;
+﻿using ProjectDapperBlog_CSharp;
 using ProjectDapperBlog_CSharp.Repositories;
 using System;
 

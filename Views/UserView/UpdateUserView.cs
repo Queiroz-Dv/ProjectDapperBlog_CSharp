@@ -9,20 +9,39 @@ namespace ProjectDapperBlog.Views.UserView
     {
         public static void Load()
         {
-            //Criar validações
             Console.Clear();
             Console.WriteLine("Atulizar Usuário");
             Console.WriteLine("-------------");
             Console.Write("Id: ");
             var id = Console.ReadLine();
+            if (id == null || id == "")
+            {
+                Console.WriteLine("Dados nulos ou vazios não podem ser salvos!");
+                return;
+            }
             Console.Write("Nome: ");
             var name = Console.ReadLine();
+            if (name == null || name == "")
+            {
+                Console.WriteLine("Dados nulos ou vazios não podem ser salvos!");
+                return;
+            }
 
             Console.Write("Email: ");
             var email = Console.ReadLine();
+            if (email == null || email == "")
+            {
+                Console.WriteLine("Dados nulos ou vazios não podem ser salvos!");
+                return;
+            }
 
             Console.Write("Senha: ");
             var password = Console.ReadLine();
+            if (password == null || password == "")
+            {
+                Console.WriteLine("Dados nulos ou vazios não podem ser salvos!");
+                return;
+            }
 
             Console.Write("Bio: ");
             var bio = Console.ReadLine();
@@ -32,6 +51,11 @@ namespace ProjectDapperBlog.Views.UserView
 
             Console.Write("Slug: ");
             var slug = Console.ReadLine();
+            if (slug == null || slug == "")
+            {
+                Console.WriteLine("Dados nulos ou vazios não podem ser salvos!");
+                return;
+            }
 
             Console.WriteLine("Aperte qualquer tecla para prosseguir com a atualização");
             Console.ReadKey();
