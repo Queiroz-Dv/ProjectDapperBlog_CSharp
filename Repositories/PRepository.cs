@@ -1,8 +1,6 @@
 ﻿using Dapper;
 using Microsoft.Data.SqlClient;
 using ProjectDapperBlog_CSharp.Models;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace ProjectDapperBlog_CSharp.Repositories
 {
@@ -35,29 +33,26 @@ namespace ProjectDapperBlog_CSharp.Repositories
                             [Post].[Slug],
                             [Tag].[Id],
                             [Tag].[Name],
-                            [Tag].[Slug]";  
+                            [Tag].[Slug]";
 
-            var posts = new List<Post>();
-            var items = _connection.Query<Post, Tag, Post>(query,
-                (post, tag) =>
+            var items = _connection.Query(query,
+                (Func<Post, Tag, Post>)((p, t) =>
                 {
-                    var pst = posts.FirstOrDefault(x => x.Id == post.Id);
-                    if (pst == null)
+                    var post = new List<Post>().FirstOrDefault(x => x.Id == p.Id);
+                    if (post == null)
                     {
-                        pst = post;
-                        if (tag != null)
-                        {
-                            pst.Tags.Add(tag);
-                        }
-                        posts.Add(pst);
+                        post = p;
+                        if (t != null)
+                            post.Tags.Add(t);
+                        new List<Post>().Add(post);
                     }
                     else
-                    {                        
-                        pst.Tags.Add(tag);
+                    {
+                        post.Tags.Add(t);
                     }
-                    return post;
-                }, splitOn: "Id");
-            return posts;
+                    return p;
+                }), splitOn: "Id");
+            return new List<Post>();
         }
     }
 }

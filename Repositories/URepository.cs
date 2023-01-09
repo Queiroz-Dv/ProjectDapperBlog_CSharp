@@ -2,8 +2,6 @@
 using Microsoft.Data.SqlClient;
 using ProjectDapperBlog.Models;
 using ProjectDapperBlog_CSharp.Models;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace ProjectDapperBlog_CSharp.Repositories
 {
@@ -26,27 +24,24 @@ namespace ProjectDapperBlog_CSharp.Repositories
 	                LEFT JOIN [UserRole] ON [UserRole].[UserId] = [User].[Id]
 	                LEFT JOIN [Role] ON [UserRole].[RoleId] = [Role].[Id]";
 
-            var users = new List<User>();
-            var items = _connection.Query<User, Role, User>(query,
-                (user, role) =>
+            var items = _connection.Query(query,
+                (Func<User, Role, User>)((u, r) =>
                 {
-                    var usr = users.FirstOrDefault(x => x.Id == user.Id);
-                    if (usr == null)
+                    var user = new List<User>().FirstOrDefault(x => x.Id == u.Id);
+                    if (user == null)
                     {
-                        usr = user;
-                        if (role != null)
-                        {
-                            usr.Roles.Add(role);
-                        }
-                        users.Add(usr);
+                        user = u;
+                        if (r != null)
+                            user.Roles.Add(r);
+                        new List<User>().Add(user);
                     }
                     else
                     {
-                        usr.Roles.Add(role);
+                        user.Roles.Add(r);
                     }
-                    return user;
-                }, splitOn: "Id");
-            return users;
+                    return u;
+                }), splitOn: "Id");
+            return new List<User>();
         }
     }
 }
